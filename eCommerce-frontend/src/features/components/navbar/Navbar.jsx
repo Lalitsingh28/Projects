@@ -9,7 +9,6 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
   { name: 'Team', href: '#', current: false },
   { name: 'Projects', href: '#', current: false },
   { name: 'Calendar', href: '#', current: false },
@@ -36,8 +35,8 @@ function Navbar({children}) {
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        className="h-16 w-16"
+                        src="/public/ODP Logo.png"
                         alt="Your Company"
                       />
                     </div>
@@ -49,8 +48,8 @@ function Navbar({children}) {
                             href={item.href}
                             className={classNames(
                               item.current
-                                ? 'bg-gray-900 text-white'
-                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                ? 'bg-violet-400 text-white'
+                                : 'text-white hover:bg-white hover:text-violet-400',
                               'rounded-md px-3 py-2 text-sm font-medium'
                             )}
                             aria-current={item.current ? 'page' : undefined}
@@ -65,20 +64,20 @@ function Navbar({children}) {
                     <div className="ml-4 flex items-center md:ml-6">
                       <button
                         type="button"
-                        className="relative rounded-full  p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        className="relative rounded-full  p-1 text-white hover:text-violet-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">View notifications</span>
                         <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
-                      <span className="inline-flex items-center rounded-md mb-5 -ml-2 bg-violet-300 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
+                      <span className="inline-flex items-center rounded-md mb-5 -ml-2 bg-white px-2 py-1 text-xs font-medium text-violet-400 ring-1 ring-inset ring-white">
         3
       </span>
 
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
-                          <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-violet-400 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
                             <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
@@ -100,8 +99,9 @@ function Navbar({children}) {
                                   <a
                                     href={item.href}
                                     className={classNames(
-                                      active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700'
+                                      active ? 'bg-white' : '',
+                                      'block px-4 py-2 text-sm text-violet-400 hover:text-white hover:bg-violet-400'
+                                      
                                     )}
                                   >
                                     {item.name}
@@ -137,7 +137,7 @@ function Navbar({children}) {
                       as="a"
                       href={item.href}
                       className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        item.current ? 'bg-gray-900 text-white' : 'text-white hover:bg-white hover:text-violet-400',
                         'block rounded-md px-3 py-2 text-base font-medium'
                       )}
                       aria-current={item.current ? 'page' : undefined}
@@ -153,17 +153,17 @@ function Navbar({children}) {
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">{user.name}</div>
-                      <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
+                      <div className="text-sm font-medium leading-none text-white">{user.email}</div>
                     </div>
                     <button
                       type="button"
-                      className="relative ml-auto flex-shrink-0 rounded-full  p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      className="relative ml-auto flex-shrink-0 rounded-full  p-1 text-white hover:text-violet-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">View notifications</span>
                       <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
-                    <span className="inline-flex items-center rounded-md mb-5 -ml-3 bg-violet-300 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
+                    <span className="inline-flex items-center rounded-md mb-5 -ml-3 bg-white px-2 py-1 text-xs font-medium  ring-1 ring-inset ring-yellow-600/20">
         3
       </span>
                   </div>
@@ -173,7 +173,7 @@ function Navbar({children}) {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                        className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-white hover:text-violet-400"
                       >
                         {item.name}
                       </Disclosure.Button>

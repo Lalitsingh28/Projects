@@ -36,7 +36,7 @@ function Navbar({children}) {
                     <div className="flex-shrink-0">
                       <img
                         className="h-16 w-16"
-                        src="/public/ODP Logo.png"
+                        src="/ODP_Logo.png"
                         alt="Your Company"
                       />
                     </div>

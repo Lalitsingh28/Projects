@@ -50,6 +50,8 @@ function Login() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={submitForm} className="space-y-6">
+
+            {/* Email Section  */}
             <div>
               <label
                 htmlFor="email"
@@ -70,7 +72,7 @@ function Login() {
                 />
               </div>
             </div>
-
+              {/* Password Section  */}
             <div>
               <div className="flex items-center justify-between">
                 <label
@@ -101,8 +103,8 @@ function Login() {
                 />
               </div>
             </div>
-
-            <div>
+            {/* Submit Section  */}
+           <div>
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

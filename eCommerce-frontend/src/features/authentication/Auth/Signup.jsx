@@ -73,7 +73,7 @@ function Signup() {
                 {/* Email Section */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                  Email address
+                  Email
                 </label>
                 <div className="mt-2">
                   <input
@@ -127,7 +127,7 @@ function Signup() {
                   />
                 </div>
               </div>
-  
+                {/* Submit Section  */}
               <div>
                 <button
                   type="submit"

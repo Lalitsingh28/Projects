@@ -2,8 +2,11 @@ import Home from "./features/components/home/Home"
 import './index.css'
 import LoginPage from "./features/components/login/LoginPage"
 import SignupPage from "./features/components/signup/SignupPage"
+import CartPage from "./features/components/cart/cartPage"
 import * as React from "react";
 import { createRoot } from "react-dom/client";
+import { Counter } from "./features/counter/Counter"
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -25,6 +28,14 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage/>,
+  },
+  {
+    path: "/cart",
+    element: <CartPage/>,
+  },
+  {
+    path: "/counter",
+    element: <Counter/>,
   },
 ]);
 function App() {

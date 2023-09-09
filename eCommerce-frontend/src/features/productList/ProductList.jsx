@@ -4,6 +4,7 @@ import { increment, incrementAsync, selectCount } from "./ProductListSlice";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import {Link} from "react-router-dom"
 import {
   ChevronDownIcon,
   FunnelIcon,
@@ -105,7 +106,7 @@ export default function ProductList() {
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   return (
-    <div className="bg-white">
+    <div className="bg-white rounded-md">
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -221,7 +222,7 @@ export default function ProductList() {
         </Transition.Root>
 
         {/* Home Page Starts */}
-        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <main className=" mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               All Products
@@ -369,6 +370,7 @@ export default function ProductList() {
 
                         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                           {products.map((product) => (
+                            <Link to="/product-details">
                             <div key={product.id} className="group relative">
                               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                                 <img
@@ -397,6 +399,7 @@ export default function ProductList() {
                                 </p>
                               </div>
                             </div>
+                            </Link>
                           ))}
                         </div>
                       </div>

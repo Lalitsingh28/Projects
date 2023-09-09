@@ -1,18 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchCount } from "./ProductFetchApi";
+import { fetchProducts , fetchProductsByFilter} from "./ProductFetchApi";
 
 const initialState = {
-  value: 0,
+  products: [],
   status: "idle",
 };
 
-export const incrementAsync = createAsyncThunk("fetchCount", async (amount) => {
-  const response = await fetchCount(amount);
+export const fetchProductsAsync = createAsyncThunk('productList/fetchProducts', async () => {
+  const response = await fetchProducts();
   return response.data;
 });
 
-export const counterSlice = createSlice({
-  name: "counter",
+export const fetchProductsFilterAsync = createAsyncThunk('productList/fetchProductsByFilter', async (filter) => {
+  const response = await fetchProductsByFilter(filter);
+  return response.data;
+});
+
+export const productSlice = createSlice({
+  name: "product",
   initialState,
   reducers: {
     increment: (state) => {
@@ -21,18 +26,25 @@ export const counterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(incrementAsync.pending, (state) => {
+      .addCase(fetchProductsAsync.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(incrementAsync.fulfilled, (state, action) => {
+      .addCase(fetchProductsAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.value += action.payload;
+        state.products = action.payload;
+      })
+      .addCase(fetchProductsFilterAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchProductsFilterAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.products = action.payload;
       });
   },
 });
 
-export const { increment } = counterSlice.actions;
+export const { increment } = productSlice.actions;
 
-export const selectCount = (state) => state.counter.value;
+export const selectAllProducts = (state) => state.product.products;
 
-export default counterSlice.reducer;
+export default productSlice.reducer;

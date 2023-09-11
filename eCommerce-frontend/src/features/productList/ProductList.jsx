@@ -14,11 +14,9 @@ import {
 } from "@heroicons/react/20/solid";
 
 const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
+  { name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
+  { name: 'Price: Low to High', sort: 'discountPrice', order: 'asc', current: false },
+  { name: 'Price: High to Low', sort: 'discountPrice', order: 'desc', current: false },
 ];
 
 const filters = [
@@ -220,18 +218,36 @@ export default function ProductList() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products = useSelector(selectAllProducts);
   const [filter,setFilter] = useState({});
+  const [sort,setSort] = useState({});
 
   const handleFilter = (e, section, option) => {
+    // console.log(e.target.checked);
+    const newFilter = { ...filter };
+    if (e.target.checked) {
+      if (newFilter[section.id]) {
+        newFilter[section.id].push(option.value);
+      } else {
+        newFilter[section.id] = [option.value];
+      }
+    } else {
+      const index = newFilter[section.id].findIndex(
+        (el) => el === option.value
+      );
+      newFilter[section.id].splice(index, 1);
+    }
+    console.log({ newFilter });
+    setFilter(newFilter);
+  };
 
-    const newFilter = {...filter,[section.id]:option.value};
-    setFilter(newFilter)
-    dispatch(fetchProductsFilterAsync(newFilter));
-   
-  }
+  const handleSort = (e, option) => {
+    const sort = { _sort: option.sort, _order: option.order };
+    console.log({ sort });
+    setSort(sort);
+  };
 
   useEffect(()=>{
-    dispatch(fetchProductsAsync())
-  },[dispatch])
+    dispatch(fetchProductsFilterAsync({filter,sort}));
+  },[dispatch,filter, sort])
 
   return (
     <div className="bg-white rounded-md">
@@ -381,8 +397,8 @@ export default function ProductList() {
                       {sortOptions.map((option) => (
                         <Menu.Item key={option.name}>
                           {({ active }) => (
-                            <a
-                              href={option.href}
+                            <p
+                            onClick={e => handleSort(e,option)}
                               className={classNames(
                                 option.current
                                   ? "font-medium text-gray-900"
@@ -392,7 +408,7 @@ export default function ProductList() {
                               )}
                             >
                               {option.name}
-                            </a>
+                            </p>
                           )}
                         </Menu.Item>
                       ))}
@@ -506,13 +522,13 @@ export default function ProductList() {
                                 <div className="mt-4 flex justify-between">
                                   <div>
                                     <h3 className="text-sm text-gray-700">
-                                      <a href={product.href}>
+                                      <div href={product.href}>
                                         <span
                                           aria-hidden="true"
                                           className="absolute inset-0"
                                         />
                                         {product.title}
-                                      </a>
+                                      </div>
                                     </h3>
                                     <p className="mt-1 text-sm text-gray-500">
                                       {product.color}

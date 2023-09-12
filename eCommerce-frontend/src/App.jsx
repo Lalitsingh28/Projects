@@ -1,59 +1,53 @@
-import Home from "./features/components/home/Home"
-import './index.css'
-import LoginPage from "./features/components/login/LoginPage"
-import SignupPage from "./features/components/signup/SignupPage"
-import CartPage from "./features/components/cart/cartPage"
-import * as React from "react";
-import { createRoot } from "react-dom/client";
-import { Counter } from "./features/counter/Counter"
-
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
-import CheckoutPage from "./features/components/checkout/CheckoutPage"
-import ProductsDetailsPage from "./features/components/productDetails/ProductsDetailsPage"
+import Home from "./features/components/home/Home";
+import "./index.css";
+import LoginPage from "./features/components/login/LoginPage";
+import SignupPage from "./features/components/signup/SignupPage";
+import CartPage from "./features/components/cart/cartPage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import CheckoutPage from "./features/components/checkout/CheckoutPage";
+import ProductsDetailsPage from "./features/components/productDetails/ProductsDetailsPage";
+import {Protected} from "./features/authentication/Auth/Protected";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <Home />
-    ),
+    element: <Home />,
   },
   {
     path: "/signup",
-    element: <SignupPage/>,
+    element: <SignupPage />,
   },
   {
     path: "/login",
-    element: <LoginPage/>,
+    element: <LoginPage />,
   },
   {
     path: "/cart",
-    element: <CartPage/>,
+    element: (
+      <Protected>
+        <CartPage />
+      </Protected>
+    ),
   },
   {
     path: "/checkout",
-    element: <CheckoutPage/>,
+    element: (
+      <Protected>
+        <CheckoutPage />
+      </Protected>
+    ),
   },
   {
-    path:"/product-details",
-    element: <ProductsDetailsPage/>
-  }
+    path: '/product-detail/:id',
+    element: <ProductsDetailsPage />,
+  },
 ]);
 function App() {
-
   return (
     <>
-      {/* <Home></Home> */}
-      {/* <LoginPage></LoginPage> */}
-      {/* <SignupPage></SignupPage> */}
       <RouterProvider router={router} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

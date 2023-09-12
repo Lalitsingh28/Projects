@@ -19,7 +19,7 @@ const initialState = {
 
 
 export const fetchProductByIdAsync = createAsyncThunk(
-  'productList/fetchProductById',
+  'product/fetchProductById',
   async (id) => {
     const response = await fetchProductById(id);
     return response.data;
@@ -27,7 +27,7 @@ export const fetchProductByIdAsync = createAsyncThunk(
 );
 
 export const fetchProductsFiltersAsync = createAsyncThunk(
-  'productList/fetchProductsByFilters',
+  'product/fetchProductsByFilters',
   async ({ filter, sort, pagination, admin }) => {
     const response = await fetchProductsByFilters(filter, sort, pagination, admin);
     return response.data;
@@ -35,14 +35,14 @@ export const fetchProductsFiltersAsync = createAsyncThunk(
 );
 
 export const fetchBrandsAsync = createAsyncThunk(
-  'productList/fetchBrands',
+  'product/fetchBrands',
   async () => {
     const response = await fetchBrands();
     return response.data;
   }
 );
 export const fetchCategoriesAsync = createAsyncThunk(
-  'productList/fetchCategories',
+  'product/fetchCategories',
   async () => {
     const response = await fetchCategories();
     return response.data;
@@ -50,7 +50,7 @@ export const fetchCategoriesAsync = createAsyncThunk(
 );
 
 export const createProductAsync = createAsyncThunk(
-  'productList/create',
+  'product/create',
   async (product) => {
     const response = await createProduct(product);
     return response.data;
@@ -58,7 +58,7 @@ export const createProductAsync = createAsyncThunk(
 );
 
 export const updateProductAsync = createAsyncThunk(
-  'productList/update',
+  'product/update',
   async (update) => {
     const response = await updateProduct(update);
     return response.data;

@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductList from '../../productList/ProductList'
+import ProductList from '../../product/ProductList'
 import Navbar from '../navbar/Navbar'
 function Home() {
   return (

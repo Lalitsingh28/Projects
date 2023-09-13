@@ -44,32 +44,29 @@ export function updateProduct(update) {
   });
 }
 
-export function fetchProductsByFilters(filter, sort, pagination, admin) {
+export function fetchProductsByFilters(filter, sort, pagination) {
 
   let queryString = '';
-  for (let key in filter) {
+  for(let key in filter){
     const categoryValues = filter[key];
-    if (categoryValues.length) {
-      queryString += `${key}=${categoryValues}&`;
+    if(categoryValues.length){
+      const lastCategoryValue = categoryValues[categoryValues.length-1]
+      queryString += `${key}=${lastCategoryValue}&`
     }
   }
-  for (let key in sort) {
-    queryString += `${key}=${sort[key]}&`;
+  for(let key in sort){
+    queryString += `${key}=${sort[key]}&`
   }
-  for (let key in pagination) {
-    queryString += `${key}=${pagination[key]}&`;
-  }
-  if(admin){
-    queryString += `admin=true`;
+  // console.log(pagination)
+  for(let key in pagination){
+    queryString += `${key}=${pagination[key]}&`
   }
 
-  return new Promise(async (resolve) => {
-    const response = await fetch(
-      'http://localhost:8080/products?' + queryString
-    );
-    const data = await response.json();
-    const totalItems = await response.headers.get('Total-Count');
-    resolve({ data: { products: data, totalItems: +totalItems } });
+  return new Promise(async (resolve) =>{
+    const response = await fetch('http://localhost:8080/products?'+queryString) 
+    const data = await response.json()
+    const totalItems = await response.headers.get('total-Count')
+    resolve({data:{products:data,totalItems:+totalItems}})
   });
 }
 

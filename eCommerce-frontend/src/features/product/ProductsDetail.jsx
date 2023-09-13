@@ -48,7 +48,7 @@ export default function ProductDetail() {
 
   const handleCart = (e)=>{
     e.preventDefault();
-    const newItem  = {...product,quantity:1,user:user.id }
+    const newItem  = {...product,quantity:1,user:user.id}
     delete newItem['id'];
     dispatch(addToCartAsync(newItem)) 
   }
@@ -58,9 +58,9 @@ export default function ProductDetail() {
   }, [dispatch, params.id]);
 
   return (
-    <div className='bg-white rounded-md mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8'>
+    <div className="bg-white rounded-md mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
       {product && (
-        <div className=" pt-12">
+        <div className="pt-6">
           <nav aria-label="Breadcrumb">
             <ol
               role="list"
